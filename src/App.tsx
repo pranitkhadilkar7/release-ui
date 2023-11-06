@@ -1,5 +1,7 @@
+import { PageRoutes } from './routes/PageRoutes'
+
 function App() {
-  return <h1>Welcome to EMTECH Release Project</h1>
+  return <PageRoutes />
 }
 
 export default App
