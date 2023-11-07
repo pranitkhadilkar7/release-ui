@@ -1,3 +1,9 @@
+import { LogoHeader } from '../../components/LogoHeader'
+
 export function Home() {
-  return <h1>Home</h1>
+  return (
+    <div className="tw-flex tw-flex-col tw-h-full tw-overflow-auto">
+      <LogoHeader />
+    </div>
+  )
 }

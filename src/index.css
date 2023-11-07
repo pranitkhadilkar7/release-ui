@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  html,
+  body,
+  #root {
+    @apply tw-h-full tw-overflow-hidden tw-font-proxima_novaregular;
+  }
+}
+
 @font-face {
   font-family: 'proxima_novaregular';
   src:
