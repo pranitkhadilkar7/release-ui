@@ -3,8 +3,9 @@ import emtechLogo from '../../assets/images/logo.png'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ErrorText } from '../../components/ErrorText'
 import isEmail from 'validator/lib/isEmail'
+import { useLoginMutation } from './login-service'
 
-type SignInForm = {
+export type SignInForm = {
   email: string
   password: string
 }
@@ -16,8 +17,10 @@ export function Login() {
     formState: { errors },
   } = useForm<SignInForm>({ mode: 'onChange' })
 
+  const [login, { isLoading }] = useLoginMutation()
+
   const onSubmit: SubmitHandler<SignInForm> = (data) => {
-    console.log(data)
+    login(data)
   }
 
   return (
@@ -87,7 +90,9 @@ export function Login() {
           </div>
           <PrimaryButton
             title="Sign In"
-            className="tw-p-2 tw-w-full tw-mt-2"
+            className="tw-h-10 tw-w-full tw-mt-2"
+            disabled={isLoading}
+            showSpinner={isLoading}
             onClick={handleSubmit(onSubmit)}
           />
           <p className="tw-mt-4 tw-text-sm tw-text-gray-500">
@@ -97,6 +102,15 @@ export function Login() {
               className="tw-font-semibold tw-leading-6 tw-text-primary hover:tw-text-primary"
             >
               Register for free
+            </a>
+          </p>
+          <p className="tw-mt-1 tw-text-sm tw-text-gray-500">
+            Not here to create a release?{' '}
+            <a
+              href="/"
+              className="tw-font-semibold tw-leading-6 tw-text-primary hover:tw-text-primary"
+            >
+              Check our releases
             </a>
           </p>
         </div>

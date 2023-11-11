@@ -15,14 +15,14 @@ export function Home() {
             lastUpdateMonth="November"
             lastUpdateYear="2023"
             buttonText="I'm a Regulator"
-            className="tw-bg-white-house tw-bg-no-repeat tw-bg-50% tw-bg-right"
+            className="tw-p-4.5 tw-bg-white-house tw-bg-no-repeat tw-bg-50% tw-bg-right"
           />
           <ReleaseTypeCard
             title="FSP Release notes"
             lastUpdateMonth="November"
             lastUpdateYear="2023"
             buttonText="I'm a FSP"
-            className="tw-bg-rocket tw-bg-no-repeat tw-bg-50% tw-bg-right"
+            className="tw-p-4.5 tw-bg-rocket tw-bg-no-repeat tw-bg-50% tw-bg-right"
           />
         </div>
       </div>
