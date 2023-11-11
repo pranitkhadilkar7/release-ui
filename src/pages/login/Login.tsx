@@ -1,7 +1,25 @@
 import { PrimaryButton } from '../../components/PrimaryButton'
 import emtechLogo from '../../assets/images/logo.png'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { ErrorText } from '../../components/ErrorText'
+import isEmail from 'validator/lib/isEmail'
+
+type SignInForm = {
+  email: string
+  password: string
+}
 
 export function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInForm>({ mode: 'onChange' })
+
+  const onSubmit: SubmitHandler<SignInForm> = (data) => {
+    console.log(data)
+  }
+
   return (
     <div className="tw-flex tw-flex-col tw-h-full tw-overflow-auto">
       <div className="tw-grow tw-flex tw-flex-row tw-items-center tw-justify-center">
@@ -24,13 +42,22 @@ export function Login() {
             <div className="tw-mt-2">
               <input
                 type="email"
-                name="email"
                 id="email"
                 className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-p-1.5 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset 
                   tw-ring-gray-300 placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-ring-primary focus:tw-outline-none 
                   sm:tw-text-sm sm:tw-leading-6"
                 placeholder="you@example.com"
+                {...register('email', {
+                  required: true,
+                  validate: { isEmail: (value) => isEmail(value) },
+                })}
               />
+              {errors.email && (
+                <ErrorText
+                  text="Not a valid email address"
+                  className="tw-mt-2"
+                />
+              )}
             </div>
           </div>
 
@@ -44,15 +71,25 @@ export function Login() {
             <div className="tw-mt-2">
               <input
                 type="password"
-                name="password"
                 id="password"
                 className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-p-1.5 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset 
                   tw-ring-gray-300 placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-ring-primary focus:tw-outline-none 
                   sm:tw-text-sm sm:tw-leading-6"
+                placeholder="Password"
+                {...register('password', { required: true })}
               />
+              {errors.password && (
+                <>
+                  <ErrorText text="Not a valid password" className="tw-mt-2" />
+                </>
+              )}
             </div>
           </div>
-          <PrimaryButton title="Sign In" className="tw-p-2 tw-w-full tw-mt-2" />
+          <PrimaryButton
+            title="Sign In"
+            className="tw-p-2 tw-w-full tw-mt-2"
+            onClick={handleSubmit(onSubmit)}
+          />
           <p className="tw-mt-4 tw-text-sm tw-text-gray-500">
             Not a member?{' '}
             <a
