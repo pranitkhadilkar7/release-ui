@@ -1,4 +1,7 @@
+import { Home } from '../pages/home/Home'
 import { Login } from '../pages/login/Login'
+import { FspReleaseNotes } from '../pages/release-notes/FspReleaseNotes'
+import { RegulatorReleaseNotes } from '../pages/release-notes/RegulatorReleaseNotes'
 
 type RouteInfo = {
   path: string
@@ -9,9 +12,24 @@ export const PATH = {
   home: '/',
   login: '/login',
   signup: '/signup',
+  fspReleaseNotes: '/release-notes/fsp',
+  regulatorReleaseNotes: '/release-notes/regulator',
 }
 
-export const PUBLIC_ROUTES = []
+export const PUBLIC_ROUTES: RouteInfo[] = [
+  {
+    path: PATH.home,
+    component: Home,
+  },
+  {
+    path: PATH.fspReleaseNotes,
+    component: FspReleaseNotes,
+  },
+  {
+    path: PATH.regulatorReleaseNotes,
+    component: RegulatorReleaseNotes,
+  },
+]
 
 export const AUTH_ROUTES: RouteInfo[] = [
   {

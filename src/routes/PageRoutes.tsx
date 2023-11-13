@@ -1,12 +1,17 @@
 import { Route, Routes } from 'react-router-dom'
-import { Home } from '../pages/home/Home'
-import { AUTH_ROUTES } from './routeConfig'
+import { AUTH_ROUTES, PUBLIC_ROUTES } from './routeConfig'
 import { AuthNotRequired } from './AuthNotRequired'
 
 export function PageRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      {PUBLIC_ROUTES.map((route) => (
+        <Route
+          key={route.path}
+          path={route.path}
+          element={<route.component />}
+        />
+      ))}
       {AUTH_ROUTES.map((route) => (
         <Route
           key={route.path}

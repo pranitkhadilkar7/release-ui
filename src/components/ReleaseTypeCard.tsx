@@ -5,6 +5,7 @@ type Props = {
   lastUpdateMonth: string
   lastUpdateYear: string
   buttonText: string
+  onButtonClick: () => void
   className?: string
 }
 
@@ -13,6 +14,7 @@ export function ReleaseTypeCard({
   lastUpdateMonth,
   lastUpdateYear,
   buttonText,
+  onButtonClick,
   className = '',
 }: Props) {
   return (
@@ -30,7 +32,7 @@ export function ReleaseTypeCard({
       <div>
         <PrimaryButton
           title={buttonText}
-          onClick={() => {}}
+          onClick={onButtonClick}
           className="tw-p-3"
         />
       </div>
