@@ -5,11 +5,11 @@ type Props = {
   children: JSX.Element
 }
 
-export function RequireAuth({ children }: Props) {
+export function AuthNotRequired({ children }: Props) {
   const { isLoggedIn } = useAuth()
   const location = useLocation()
 
-  if (!isLoggedIn) {
+  if (isLoggedIn) {
     return <Navigate to="/" state={{ from: location }} replace />
   }
   return children

@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { ErrorText } from '../../components/ErrorText'
 import isEmail from 'validator/lib/isEmail'
 import { useLoginMutation } from './login-service'
+import { useNavigate } from 'react-router-dom'
 
 export type SignInForm = {
   email: string
@@ -11,6 +12,7 @@ export type SignInForm = {
 }
 
 export function Login() {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -109,6 +111,10 @@ export function Login() {
             <a
               href="/"
               className="tw-font-semibold tw-leading-6 tw-text-primary hover:tw-text-primary"
+              onClick={(e) => {
+                e.preventDefault()
+                navigate('/')
+              }}
             >
               Check our releases
             </a>
