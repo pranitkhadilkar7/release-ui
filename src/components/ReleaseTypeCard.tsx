@@ -28,7 +28,11 @@ export function ReleaseTypeCard({
         Last update: {lastUpdateMonth} {lastUpdateYear}
       </p>
       <div>
-        <PrimaryButton title={buttonText} onClick={() => {}} />
+        <PrimaryButton
+          title={buttonText}
+          onClick={() => {}}
+          className="tw-p-3"
+        />
       </div>
     </div>
   )
