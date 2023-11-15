@@ -42,6 +42,7 @@ module.exports = {
         'back-swerl': "url('/src/assets/images/back-swerl.png')",
         'white-house': "url('/src/assets/images/whitehouse.png')",
         rocket: "url('/src/assets/images/rocket.png')",
+        'relase-page': "url('/src/assets/images/bg-dark-theme.png')",
       },
       backgroundSize: {
         auto: 'auto',

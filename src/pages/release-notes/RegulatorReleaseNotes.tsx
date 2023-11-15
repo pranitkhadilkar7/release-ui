@@ -1,3 +1,5 @@
 export function RegulatorReleaseNotes() {
-  return <h1>Regulator Release Notes</h1>
+  return (
+    <div className="tw-flex tw-flex-col tw-h-full tw-overflow-auto tw-bg-relase-page tw-bg-no-repeat tw-bg-cover"></div>
+  )
 }
