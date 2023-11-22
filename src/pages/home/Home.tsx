@@ -22,7 +22,7 @@ export function Home() {
             onButtonClick={() => {
               navigate(PATH.regulatorReleaseNotes)
             }}
-            className="tw-p-4.5 tw-bg-white-house tw-bg-no-repeat tw-bg-50% tw-bg-right"
+            className="tw-bg-white-house tw-bg-no-repeat tw-bg-50% tw-bg-right"
           />
           <ReleaseTypeCard
             title="FSP Release notes"
@@ -32,7 +32,7 @@ export function Home() {
             onButtonClick={() => {
               navigate(PATH.fspReleaseNotes)
             }}
-            className="tw-p-4.5 tw-bg-rocket tw-bg-no-repeat tw-bg-50% tw-bg-right"
+            className="tw-bg-rocket tw-bg-no-repeat tw-bg-50% tw-bg-right"
           />
         </div>
       </div>
