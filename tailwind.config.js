@@ -38,6 +38,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#c0933e',
+        secondary: '#00a3ff',
         guyabano: '#f8f8f8',
         date: {
           1: '#8499b1',
@@ -62,6 +63,7 @@ module.exports = {
         'left-24': 'center left 6rem',
       },
       spacing: {
+        1.5: '0.375rem',
         4.5: '1.125rem',
         100: '25rem',
         30: '7.5rem',
