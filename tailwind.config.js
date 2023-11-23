@@ -9,6 +9,7 @@ module.exports = {
         'proxima_novaregular',
         ...defaultTheme.fontFamily.sans,
       ],
+      proxima_novabold: ['proxima_novabold', ...defaultTheme.fontFamily.sans],
     },
     minHeight: {
       50: '12.5rem',
@@ -26,6 +27,7 @@ module.exports = {
       full: '100%',
     },
     maxWidth: {
+      25: '6.25rem',
       50: '12.5rem',
       100: '25rem',
       112.5: '28.125rem',
@@ -37,6 +39,11 @@ module.exports = {
       colors: {
         primary: '#c0933e',
         guyabano: '#f8f8f8',
+        date: {
+          1: '#8499b1',
+          2: '#47698e',
+          default: '#8499b1',
+        },
       },
       backgroundImage: {
         'back-swerl': "url('/src/assets/images/back-swerl.png')",
