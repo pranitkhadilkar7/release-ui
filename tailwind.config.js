@@ -40,6 +40,10 @@ module.exports = {
         primary: '#c0933e',
         secondary: '#00a3ff',
         guyabano: '#f8f8f8',
+        border: {
+          1: '#dfe8f6',
+          default: '#dfe8f6',
+        },
         date: {
           1: '#8499b1',
           2: '#47698e',

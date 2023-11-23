@@ -23,7 +23,7 @@ export function Release({
   fixes,
 }: Props) {
   return (
-    <div className="tw-w-full tw-text-white tw-text-lg tw-font-normal">
+    <div className="tw-w-full tw-text-white tw-text-lg tw-font-normal tw-pb-10 tw-border-b-2 tw-border-solid tw-border-border-1 ">
       <p className="tw-text-date-1 tw-text-xl">
         {month} {year}
       </p>
