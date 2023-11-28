@@ -32,8 +32,8 @@ export function FspReleaseNotes() {
             fixes={release.fixes}
             className={
               releases.data.length > 1 && index < releases.data.length - 1
-                ? 'tw-border-b-2 tw-border-solid tw-border-border-1'
-                : ''
+                ? 'tw-border-b-2 tw-border-solid tw-border-border-1 tw-text-white'
+                : 'tw-text-white'
             }
           />
         ))}

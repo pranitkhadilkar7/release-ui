@@ -32,7 +32,7 @@ export function RegulatorReleaseNotes() {
             fixes={release.fixes}
             className={
               releases.data.length > 1 && index < releases.data.length - 1
-                ? 'tw-border-b-2 tw-border-solid tw-border-border-1'
+                ? 'tw-border-b-2 tw-border-solid tw-border-border-1 tw-text-[#25313e]'
                 : 'tw-text-[#25313e]'
             }
           />
