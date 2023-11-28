@@ -1,5 +1,5 @@
 import { apiService } from '../../store/service'
-import { Release, ReleaseType } from './release-type'
+import { LatestRelease, Release, ReleaseType } from './release-type'
 
 const releaseApi = apiService.injectEndpoints({
   endpoints: (build) => ({
@@ -13,7 +13,13 @@ const releaseApi = apiService.injectEndpoints({
         params: { ...params },
       }),
     }),
+    getLatestRelease: build.query<LatestRelease, void>({
+      query: () => ({
+        url: '/release/latest',
+        method: 'GET',
+      }),
+    }),
   }),
 })
 
-export const { useGetReleasesQuery } = releaseApi
+export const { useGetReleasesQuery, useGetLatestReleaseQuery } = releaseApi

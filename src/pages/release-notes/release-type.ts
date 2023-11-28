@@ -15,3 +15,8 @@ export type Release = {
   createdAt: string
   updatedAt: string
 }
+
+export type LatestRelease = {
+  fspRelease: Pick<Release, 'month' | 'year' | 'type'> | null
+  regRelease: Pick<Release, 'month' | 'year' | 'type'> | null
+}
