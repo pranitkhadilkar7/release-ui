@@ -5,7 +5,10 @@ import { Release } from '../../components/Release'
 
 export function RegulatorReleaseNotes() {
   const [pageSize] = useState(1)
-  const { data: releases } = useGetReleasesQuery({ type: 'FSP', pageSize })
+  const { data: releases } = useGetReleasesQuery({
+    type: 'REGULATOR',
+    pageSize,
+  })
 
   return (
     <div className="tw-flex tw-flex-col tw-h-full tw-overflow-auto tw-bg-relase-page tw-bg-no-repeat tw-bg-cover">
