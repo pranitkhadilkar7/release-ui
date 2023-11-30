@@ -5,6 +5,8 @@ import { ErrorText } from '../../components/ErrorText'
 import isEmail from 'validator/lib/isEmail'
 import { useLoginMutation } from './login-service'
 import { useNavigate } from 'react-router-dom'
+import { storeAccessTokenAtLocal } from '../../utils/storageUtils'
+import { PATH } from '../../routes/routeConfig'
 
 export type SignInForm = {
   email: string
@@ -22,7 +24,12 @@ export function Login() {
   const [login, { isLoading }] = useLoginMutation()
 
   const onSubmit: SubmitHandler<SignInForm> = (data) => {
-    login(data)
+    login(data).then((res: any) => {
+      if (res.data.accessToken) {
+        storeAccessTokenAtLocal(res.data.accessToken)
+        navigate(PATH.home)
+      }
+    })
   }
 
   return (

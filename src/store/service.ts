@@ -8,6 +8,8 @@ import {
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react'
 import { toast } from 'react-toastify'
+import { logout } from '../pages/login/login-slice'
+import { clearLocalStorage } from '../utils/storageUtils'
 
 const baseQuery = fetchBaseQuery({ baseUrl: 'http://localhost:3004/' })
 
@@ -24,6 +26,10 @@ const baseQueryWithToastImpl: BaseQueryFn<
   if (result?.data?.message) {
     toast.success(result.data.message)
   } else if (result?.error?.data?.message) {
+    if (result?.error?.status === 401) {
+      clearLocalStorage()
+      api.dispatch(logout())
+    }
     toast.error(result?.error?.data?.message)
   }
   return result
