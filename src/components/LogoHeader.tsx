@@ -5,9 +5,12 @@ import { useDispatch } from 'react-redux'
 import { clearLocalStorage } from '../utils/storageUtils'
 import { logout } from '../pages/login/login-slice'
 import { useAuth } from '../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
+import { PATH } from '../routes/routeConfig'
 
 export function LogoHeader() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { isLoggedIn } = useAuth()
 
   return (
@@ -41,6 +44,10 @@ export function LogoHeader() {
                 <a
                   href="/"
                   className="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    navigate(PATH.createRelease)
+                  }}
                 >
                   Create New Release
                 </a>

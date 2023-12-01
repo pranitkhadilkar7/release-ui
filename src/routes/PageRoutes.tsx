@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { AUTH_ROUTES, PUBLIC_ROUTES } from './routeConfig'
+import { AUTH_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES } from './routeConfig'
 import { AuthNotRequired } from './AuthNotRequired'
 
 export function PageRoutes() {
@@ -21,6 +21,13 @@ export function PageRoutes() {
               <route.component />
             </AuthNotRequired>
           }
+        />
+      ))}
+      {PRIVATE_ROUTES.map((route) => (
+        <Route
+          key={route.path}
+          path={route.path}
+          element={<route.component />}
         />
       ))}
       <Route path="*" element={<h1>Page Not Found</h1>} />
