@@ -7,6 +7,8 @@ import { useLoginMutation } from './login-service'
 import { useNavigate } from 'react-router-dom'
 import { storeAccessTokenAtLocal } from '../../utils/storageUtils'
 import { PATH } from '../../routes/routeConfig'
+import { useDispatch } from 'react-redux'
+import { login } from './login-slice'
 
 export type SignInForm = {
   email: string
@@ -15,18 +17,20 @@ export type SignInForm = {
 
 export function Login() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignInForm>({ mode: 'onChange' })
 
-  const [login, { isLoading }] = useLoginMutation()
+  const [loginUser, { isLoading }] = useLoginMutation()
 
   const onSubmit: SubmitHandler<SignInForm> = (data) => {
-    login(data).then((res: any) => {
+    loginUser(data).then((res: any) => {
       if (res.data.accessToken) {
         storeAccessTokenAtLocal(res.data.accessToken)
+        dispatch(login())
         navigate(PATH.home)
       }
     })
