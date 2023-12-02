@@ -59,7 +59,7 @@ export function Login() {
               <input
                 type="email"
                 id="email"
-                className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-p-1.5 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset 
+                className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-px-3 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset 
                   tw-ring-gray-300 placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-ring-primary focus:tw-outline-none 
                   sm:tw-text-sm sm:tw-leading-6"
                 placeholder="you@example.com"
@@ -88,7 +88,7 @@ export function Login() {
               <input
                 type="password"
                 id="password"
-                className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-p-1.5 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset 
+                className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-px-3 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset 
                   tw-ring-gray-300 placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-ring-primary focus:tw-outline-none 
                   sm:tw-text-sm sm:tw-leading-6"
                 placeholder="Password"
