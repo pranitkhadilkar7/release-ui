@@ -24,17 +24,31 @@ type Props = {
   label: string
   placeholder: string
   options: DropdownOption[]
+  onChange: (value: DropdownOption) => void
+  children?: JSX.Element
 }
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export function Dropdown({ label, placeholder, options }: Props) {
-  const [selected, setSelected] = useState<any>()
+export function Dropdown({
+  label,
+  placeholder,
+  options,
+  onChange,
+  children,
+}: Props) {
+  const [selected, setSelected] = useState<DropdownOption>()
 
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox
+      value={selected}
+      onChange={(value) => {
+        onChange(value)
+        setSelected(value)
+      }}
+    >
       {({ open }) => (
         <>
           <Listbox.Label className="tw-block tw-text-sm tw-font-medium tw-leading-6 tw-text-gray-900">
@@ -59,6 +73,7 @@ export function Dropdown({ label, placeholder, options }: Props) {
                 />
               </span>
             </Listbox.Button>
+            {children ?? <></>}
             <Transition
               show={open}
               as={Fragment}
