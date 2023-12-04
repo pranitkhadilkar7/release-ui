@@ -1,4 +1,4 @@
-import { Controller, useForm } from 'react-hook-form'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { Dropdown } from '../../components/Dropdown'
 import { LogoHeader } from '../../components/LogoHeader'
 import { TextInput } from '../../components/TextInput'
@@ -6,11 +6,13 @@ import { TextInput } from '../../components/TextInput'
 import { MONTH_OPTIONS, YEAR_OPTIONS } from '../../utils/constant'
 import { PrimaryButton } from '../../components/PrimaryButton'
 import { ErrorText } from '../../components/ErrorText'
+import { TextareaInput } from '../../components/TextareaInput'
 
 type RelaseForm = {
   name: string
   month: string
   year: string
+  descriptions: { description: string }[]
 }
 
 export function CreateRelease() {
@@ -21,6 +23,17 @@ export function CreateRelease() {
     formState: { errors },
   } = useForm<RelaseForm>({
     mode: 'onChange',
+    defaultValues: {
+      name: '',
+      month: '',
+      year: '',
+      descriptions: [{ description: '' }],
+    },
+  })
+  const { fields } = useFieldArray({
+    control,
+    name: 'descriptions',
+    // name: 'description' as 'description',
   })
 
   function onSubmit(data: RelaseForm) {
@@ -108,9 +121,20 @@ export function CreateRelease() {
               />
             </div>
           </div>
-          {/* <div className="tw-mt-5">
-            <TextareaInput />
-          </div> */}
+          <div className="tw-mt-5">
+            {fields.map((field, index) => (
+              <TextareaInput
+                id="description"
+                name={`descriptions.${index}.description`}
+                label={index === 0 ? 'Description' : ''}
+                placeholder="Description"
+                showAddIcon={index === fields.length - 1}
+                showRemoveIcon={index < fields.length - 1}
+                register={register}
+                required
+              />
+            ))}
+          </div>
           <PrimaryButton
             title="Submit"
             className="tw-h-10 tw-w-full tw-mt-5"
