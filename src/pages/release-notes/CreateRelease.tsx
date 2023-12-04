@@ -30,7 +30,7 @@ export function CreateRelease() {
       descriptions: [{ description: '' }],
     },
   })
-  const { fields } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'descriptions',
     // name: 'description' as 'description',
@@ -132,6 +132,12 @@ export function CreateRelease() {
                 showRemoveIcon={index < fields.length - 1}
                 register={register}
                 required
+                onAdd={() => {
+                  append({ description: '' })
+                }}
+                onRemove={() => {
+                  remove(index)
+                }}
               />
             ))}
           </div>

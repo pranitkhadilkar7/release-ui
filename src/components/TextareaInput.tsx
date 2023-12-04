@@ -11,6 +11,8 @@ type Props = {
   children?: JSX.Element
   showRemoveIcon?: boolean
   showAddIcon?: boolean
+  onRemove?: () => void
+  onAdd?: () => void
 }
 
 export function TextareaInput({
@@ -23,6 +25,8 @@ export function TextareaInput({
   children,
   showRemoveIcon,
   showAddIcon,
+  onRemove,
+  onAdd,
 }: Props) {
   return (
     <div className="tw-w-full">
@@ -48,10 +52,16 @@ export function TextareaInput({
 
         <div className="tw-flex tw-items-center tw-justify-end tw-mt-1">
           {showAddIcon && (
-            <PlusCircleIcon className="tw-h-5 tw-w-5 tw-cursor-pointer" />
+            <PlusCircleIcon
+              className="tw-h-5 tw-w-5 tw-cursor-pointer"
+              onClick={onAdd}
+            />
           )}
           {showRemoveIcon && (
-            <TrashIcon className="tw-h-5 tw-w-5 tw-cursor-pointer" />
+            <TrashIcon
+              className="tw-h-5 tw-w-5 tw-cursor-pointer"
+              onClick={onRemove}
+            />
           )}
         </div>
       </div>
