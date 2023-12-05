@@ -18,6 +18,7 @@ type RelaseForm = {
   year: string
   type: string
   descriptions: { description: string }[]
+  newFeatures: { feature: string }[]
 }
 
 export function CreateRelease() {
@@ -34,8 +35,10 @@ export function CreateRelease() {
       year: '',
       type: '',
       descriptions: [{ description: '' }],
+      newFeatures: [{ feature: '' }],
     },
   })
+
   const {
     fields: descriptionFields,
     append: appendDescription,
@@ -43,6 +46,14 @@ export function CreateRelease() {
   } = useFieldArray({
     control,
     name: 'descriptions',
+  })
+  const {
+    fields: newFeatureFields,
+    append: appendFeature,
+    remove: removeFeature,
+  } = useFieldArray({
+    control,
+    name: 'newFeatures',
   })
 
   function onSubmit(data: RelaseForm) {
@@ -89,6 +100,7 @@ export function CreateRelease() {
                       }
                       onChange('')
                     }}
+                    required
                   >
                     {errors.month && (
                       <ErrorText
@@ -118,6 +130,7 @@ export function CreateRelease() {
                       }
                       onChange('')
                     }}
+                    required
                   >
                     {errors.year && (
                       <ErrorText
@@ -148,6 +161,7 @@ export function CreateRelease() {
                     }
                     onChange('')
                   }}
+                  required
                 >
                   {errors.type && (
                     <ErrorText
@@ -162,7 +176,7 @@ export function CreateRelease() {
           <div className="tw-mt-5">
             {descriptionFields.map((field, index) => (
               <TextareaInput
-                id="description"
+                id={`descriptions.${index}.description`}
                 name={`descriptions.${index}.description`}
                 label={index === 0 ? 'Description' : ''}
                 placeholder="Description"
@@ -175,6 +189,25 @@ export function CreateRelease() {
                 }}
                 onRemove={() => {
                   removeDescription(index)
+                }}
+              />
+            ))}
+          </div>
+          <div className="tw-mt-3">
+            {newFeatureFields.map((field, index) => (
+              <TextareaInput
+                id={`newFeatures.${index}.feature`}
+                name={`newFeatures.${index}.feature`}
+                label={index === 0 ? 'New Features' : ''}
+                placeholder="New Feature"
+                register={register}
+                showAddIcon={index === newFeatureFields.length - 1}
+                showRemoveIcon={index < newFeatureFields.length - 1}
+                onAdd={() => {
+                  appendFeature({ feature: '' })
+                }}
+                onRemove={() => {
+                  removeFeature(index)
                 }}
               />
             ))}

@@ -26,6 +26,7 @@ type Props = {
   options: DropdownOption[]
   onChange: (value: DropdownOption) => void
   children?: JSX.Element
+  required?: boolean
 }
 
 function classNames(...classes: any[]) {
@@ -38,6 +39,7 @@ export function Dropdown({
   options,
   onChange,
   children,
+  required,
 }: Props) {
   const [selected, setSelected] = useState<DropdownOption>()
 
@@ -53,6 +55,7 @@ export function Dropdown({
         <>
           <Listbox.Label className="tw-block tw-text-sm tw-font-medium tw-leading-6 tw-text-gray-900">
             {label}
+            {required && '*'}
           </Listbox.Label>
           <div className="tw-relative tw-mt-2">
             <Listbox.Button
