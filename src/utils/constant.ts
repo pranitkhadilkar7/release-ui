@@ -19,3 +19,8 @@ export const YEAR_OPTIONS: DropdownOption[] = [
   { id: 2023, name: '2023' },
   { id: 2024, name: '2024' },
 ]
+
+export const RELEASE_OPTIONS: DropdownOption[] = [
+  { id: 'FSP', name: 'Fintech' },
+  { id: 'REGULATOR', name: 'Regulator' },
+]

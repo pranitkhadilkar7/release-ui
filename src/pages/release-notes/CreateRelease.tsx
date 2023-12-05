@@ -3,7 +3,11 @@ import { Dropdown } from '../../components/Dropdown'
 import { LogoHeader } from '../../components/LogoHeader'
 import { TextInput } from '../../components/TextInput'
 
-import { MONTH_OPTIONS, YEAR_OPTIONS } from '../../utils/constant'
+import {
+  MONTH_OPTIONS,
+  RELEASE_OPTIONS,
+  YEAR_OPTIONS,
+} from '../../utils/constant'
 import { PrimaryButton } from '../../components/PrimaryButton'
 import { ErrorText } from '../../components/ErrorText'
 import { TextareaInput } from '../../components/TextareaInput'
@@ -12,6 +16,7 @@ type RelaseForm = {
   name: string
   month: string
   year: string
+  type: string
   descriptions: { description: string }[]
 }
 
@@ -27,13 +32,17 @@ export function CreateRelease() {
       name: '',
       month: '',
       year: '',
+      type: '',
       descriptions: [{ description: '' }],
     },
   })
-  const { fields, append, remove } = useFieldArray({
+  const {
+    fields: descriptionFields,
+    append: appendDescription,
+    remove: removeDescription,
+  } = useFieldArray({
     control,
     name: 'descriptions',
-    // name: 'description' as 'description',
   })
 
   function onSubmit(data: RelaseForm) {
@@ -121,22 +130,51 @@ export function CreateRelease() {
               />
             </div>
           </div>
+          <div className="tw-mt-3">
+            <Controller
+              control={control}
+              name="type"
+              defaultValue=""
+              rules={{ required: true }}
+              render={({ field: { onChange, value } }) => (
+                <Dropdown
+                  label="Type"
+                  placeholder="Type"
+                  options={RELEASE_OPTIONS}
+                  onChange={(value) => {
+                    if (value) {
+                      onChange(value.id)
+                      return
+                    }
+                    onChange('')
+                  }}
+                >
+                  {errors.type && (
+                    <ErrorText
+                      text="Not a valid release type"
+                      className="tw-mt-2"
+                    />
+                  )}
+                </Dropdown>
+              )}
+            />
+          </div>
           <div className="tw-mt-5">
-            {fields.map((field, index) => (
+            {descriptionFields.map((field, index) => (
               <TextareaInput
                 id="description"
                 name={`descriptions.${index}.description`}
                 label={index === 0 ? 'Description' : ''}
                 placeholder="Description"
-                showAddIcon={index === fields.length - 1}
-                showRemoveIcon={index < fields.length - 1}
+                showAddIcon={index === descriptionFields.length - 1}
+                showRemoveIcon={index < descriptionFields.length - 1}
                 register={register}
                 required
                 onAdd={() => {
-                  append({ description: '' })
+                  appendDescription({ description: '' })
                 }}
                 onRemove={() => {
-                  remove(index)
+                  removeDescription(index)
                 }}
               />
             ))}
