@@ -25,7 +25,7 @@ export function TextInput({
     <div className="tw-w-full">
       <label
         htmlFor={id}
-        className="tw-block tw-text-sm tw-font-medium tw-leading-6 tw-text-gray-900"
+        className="tw-block tw-text-sm tw-font-medium tw-leading-6 tw-text-gray-900 tw-font-proxima_novabold"
       >
         {label}
         {required && '*'}

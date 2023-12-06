@@ -19,6 +19,8 @@ type RelaseForm = {
   type: string
   descriptions: { description: string }[]
   newFeatures: { feature: string }[]
+  upgrades: { upgrade: string }[]
+  fixes: { fix: string }[]
 }
 
 export function CreateRelease() {
@@ -36,6 +38,8 @@ export function CreateRelease() {
       type: '',
       descriptions: [{ description: '' }],
       newFeatures: [{ feature: '' }],
+      upgrades: [{ upgrade: '' }],
+      fixes: [{ fix: '' }],
     },
   })
 
@@ -55,6 +59,19 @@ export function CreateRelease() {
     control,
     name: 'newFeatures',
   })
+  const {
+    fields: upgradeFields,
+    append: appendUpgrade,
+    remove: removeUpgrade,
+  } = useFieldArray({
+    control,
+    name: 'upgrades',
+  })
+  const {
+    fields: fixFields,
+    append: appendFix,
+    remove: removeFix,
+  } = useFieldArray({ control, name: 'fixes' })
 
   function onSubmit(data: RelaseForm) {
     console.log(data)
@@ -176,6 +193,7 @@ export function CreateRelease() {
           <div className="tw-mt-5">
             {descriptionFields.map((field, index) => (
               <TextareaInput
+                key={`descriptions.${index}.description`}
                 id={`descriptions.${index}.description`}
                 name={`descriptions.${index}.description`}
                 label={index === 0 ? 'Description' : ''}
@@ -193,9 +211,10 @@ export function CreateRelease() {
               />
             ))}
           </div>
-          <div className="tw-mt-3">
+          <div className="tw-mt-2">
             {newFeatureFields.map((field, index) => (
               <TextareaInput
+                key={`newFeatures.${index}.feature`}
                 id={`newFeatures.${index}.feature`}
                 name={`newFeatures.${index}.feature`}
                 label={index === 0 ? 'New Features' : ''}
@@ -208,6 +227,46 @@ export function CreateRelease() {
                 }}
                 onRemove={() => {
                   removeFeature(index)
+                }}
+              />
+            ))}
+          </div>
+          <div className="tw-mt-2">
+            {upgradeFields.map((field, index) => (
+              <TextareaInput
+                key={`upgrades.${index}.upgrade`}
+                id={`upgrades.${index}.upgrade`}
+                name={`upgrades.${index}.upgrade`}
+                label={index === 0 ? 'Upgrades' : ''}
+                placeholder="Upgrades"
+                register={register}
+                showAddIcon={index === upgradeFields.length - 1}
+                showRemoveIcon={index < upgradeFields.length - 1}
+                onAdd={() => {
+                  appendUpgrade({ upgrade: '' })
+                }}
+                onRemove={() => {
+                  removeUpgrade(index)
+                }}
+              />
+            ))}
+          </div>
+          <div className="tw-mt-2">
+            {fixFields.map((field, index) => (
+              <TextareaInput
+                key={`fixes.${index}.fix`}
+                id={`fixes.${index}.fix`}
+                name={`fixes.${index}.fix`}
+                label={index === 0 ? 'Fixes' : ''}
+                placeholder="Fixes"
+                register={register}
+                showAddIcon={index === fixFields.length - 1}
+                showRemoveIcon={index < fixFields.length - 1}
+                onAdd={() => {
+                  appendFix({ fix: '' })
+                }}
+                onRemove={() => {
+                  removeFix(index)
                 }}
               />
             ))}
