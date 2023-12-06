@@ -1,19 +1,7 @@
 import { Listbox, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-
-// const people = [
-//   { id: 1, name: 'Wade Cooper' },
-//   { id: 2, name: 'Arlene Mccoy' },
-//   { id: 3, name: 'Devon Webb' },
-//   { id: 4, name: 'Tom Cook' },
-//   { id: 5, name: 'Tanya Fox' },
-//   { id: 6, name: 'Hellen Schmidt' },
-//   { id: 7, name: 'Caroline Schultz' },
-//   { id: 8, name: 'Mason Heaney' },
-//   { id: 9, name: 'Claudie Smitham' },
-//   { id: 10, name: 'Emil Schaefer' },
-// ]
+import { twMerge } from 'tailwind-merge'
 
 export type DropdownOption = {
   id: number | string
@@ -25,8 +13,8 @@ type Props = {
   placeholder: string
   options: DropdownOption[]
   onChange: (value: DropdownOption) => void
-  children?: JSX.Element
   required?: boolean
+  hasError?: boolean
 }
 
 function classNames(...classes: any[]) {
@@ -38,8 +26,8 @@ export function Dropdown({
   placeholder,
   options,
   onChange,
-  children,
   required,
+  hasError,
 }: Props) {
   const [selected, setSelected] = useState<DropdownOption>()
 
@@ -59,8 +47,12 @@ export function Dropdown({
           </Listbox.Label>
           <div className="tw-relative tw-mt-2">
             <Listbox.Button
-              className="tw-relative tw-w-full tw-cursor-default tw-rounded-md tw-bg-white tw-py-1.5 tw-pl-3 tw-pr-10 tw-text-left tw-text-gray-900 tw-shadow-sm tw-ring-1 
-        tw-ring-inset tw-ring-gray-300 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-primary sm:tw-text-sm sm:tw-leading-6"
+              className={twMerge(
+                'tw-relative tw-w-full tw-cursor-default tw-rounded-md tw-bg-white tw-py-1.5 tw-pl-3 tw-pr-10 tw-text-left tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset focus:tw-outline-none focus:tw-ring-2 sm:tw-text-sm sm:tw-leading-6',
+                hasError
+                  ? 'tw-ring-red-600 focus:tw-ring-red-600'
+                  : 'tw-ring-gray-300 focus:tw-ring-primary'
+              )}
             >
               {selected ? (
                 <span className="tw-block tw-truncate">{selected.name}</span>
@@ -76,7 +68,6 @@ export function Dropdown({
                 />
               </span>
             </Listbox.Button>
-            {children ?? <></>}
             <Transition
               show={open}
               as={Fragment}

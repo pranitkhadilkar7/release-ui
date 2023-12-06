@@ -1,5 +1,6 @@
 import { UseFormRegister } from 'react-hook-form'
 import { TrashIcon, PlusCircleIcon } from '@heroicons/react/20/solid'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   id: string
@@ -8,11 +9,11 @@ type Props = {
   name: string
   register: UseFormRegister<any>
   required?: boolean
-  children?: JSX.Element
   showRemoveIcon?: boolean
   showAddIcon?: boolean
   onRemove?: () => void
   onAdd?: () => void
+  hasError?: boolean
 }
 
 export function TextareaInput({
@@ -22,11 +23,11 @@ export function TextareaInput({
   name,
   register,
   required,
-  children,
   showRemoveIcon,
   showAddIcon,
   onRemove,
   onAdd,
+  hasError,
 }: Props) {
   return (
     <div className="tw-w-full">
@@ -43,9 +44,12 @@ export function TextareaInput({
         <textarea
           id={id}
           rows={2}
-          className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-px-3 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset 
-                  tw-ring-gray-300 placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-ring-primary focus:tw-outline-none 
-                  sm:tw-text-sm sm:tw-leading-6"
+          className={twMerge(
+            'tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-px-3 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-outline-none sm:tw-text-sm sm:tw-leading-6',
+            hasError
+              ? 'tw-ring-red-600 focus:tw-ring-red-600'
+              : 'tw-ring-gray-300 focus:tw-ring-primary'
+          )}
           defaultValue={''}
           placeholder={placeholder}
           {...register(name, { required })}

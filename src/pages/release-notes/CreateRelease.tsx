@@ -9,7 +9,6 @@ import {
   YEAR_OPTIONS,
 } from '../../utils/constant'
 import { PrimaryButton } from '../../components/PrimaryButton'
-import { ErrorText } from '../../components/ErrorText'
 import { TextareaInput } from '../../components/TextareaInput'
 
 type RelaseForm = {
@@ -93,11 +92,8 @@ export function CreateRelease() {
             name="name"
             register={register}
             required
-          >
-            {errors.name && (
-              <ErrorText text="Not a valid release name" className="tw-mt-2" />
-            )}
-          </TextInput>
+            hasError={!!errors.name}
+          />
           <div className="tw-mt-3 tw-flex tw-flex-row">
             <div className="tw-basis-1/2">
               <Controller
@@ -118,14 +114,8 @@ export function CreateRelease() {
                       onChange('')
                     }}
                     required
-                  >
-                    {errors.month && (
-                      <ErrorText
-                        text="Not a valid release month"
-                        className="tw-mt-2"
-                      />
-                    )}
-                  </Dropdown>
+                    hasError={!!errors.month}
+                  />
                 )}
               />
             </div>
@@ -148,14 +138,8 @@ export function CreateRelease() {
                       onChange('')
                     }}
                     required
-                  >
-                    {errors.year && (
-                      <ErrorText
-                        text="Not a valid release year"
-                        className="tw-mt-2"
-                      />
-                    )}
-                  </Dropdown>
+                    hasError={!!errors.year}
+                  />
                 )}
               />
             </div>
@@ -179,14 +163,8 @@ export function CreateRelease() {
                     onChange('')
                   }}
                   required
-                >
-                  {errors.type && (
-                    <ErrorText
-                      text="Not a valid release type"
-                      className="tw-mt-2"
-                    />
-                  )}
-                </Dropdown>
+                  hasError={!!errors.type}
+                />
               )}
             />
           </div>
@@ -208,6 +186,11 @@ export function CreateRelease() {
                 onRemove={() => {
                   removeDescription(index)
                 }}
+                hasError={
+                  errors.descriptions?.length
+                    ? !!errors.descriptions[index]
+                    : false
+                }
               />
             ))}
           </div>

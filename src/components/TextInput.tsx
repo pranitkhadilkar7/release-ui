@@ -1,4 +1,5 @@
 import { UseFormRegister } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   id: string
@@ -8,7 +9,7 @@ type Props = {
   name: string
   register: UseFormRegister<any>
   required?: boolean
-  children?: JSX.Element
+  hasError?: boolean
 }
 
 export function TextInput({
@@ -19,7 +20,7 @@ export function TextInput({
   name,
   register,
   required,
-  children,
+  hasError,
 }: Props) {
   return (
     <div className="tw-w-full">
@@ -34,13 +35,15 @@ export function TextInput({
         <input
           type={type}
           id={id}
-          className="tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-px-3 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset 
-                  tw-ring-gray-300 placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-ring-primary focus:tw-outline-none 
-                  sm:tw-text-sm sm:tw-leading-6"
+          className={twMerge(
+            'tw-block tw-w-full tw-rounded-md tw-border-0 tw-py-1.5 tw-px-3 tw-text-gray-900 tw-shadow-sm tw-ring-1 tw-ring-inset placeholder:tw-text-gray-400 focus:tw-ring-2 focus:tw-ring-inset focus:tw-outline-none sm:tw-text-sm sm:tw-leading-6',
+            hasError
+              ? 'tw-ring-red-600 focus:tw-ring-red-600'
+              : 'tw-ring-gray-300 focus:tw-ring-primary'
+          )}
           placeholder={placeholder}
           {...register(name, { required })}
         />
-        {children ?? <></>}
       </div>
     </div>
   )
