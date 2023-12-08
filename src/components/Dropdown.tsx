@@ -3,16 +3,16 @@ import { Fragment, useState } from 'react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { twMerge } from 'tailwind-merge'
 
-export type DropdownOption = {
-  id: number | string
+export type DropdownOption<T> = {
+  id: T
   name: string
 }
 
 type Props = {
   label: string
   placeholder: string
-  options: DropdownOption[]
-  onChange: (value: DropdownOption) => void
+  options: DropdownOption<any>[]
+  onChange: (value: DropdownOption<any>) => void
   required?: boolean
   hasError?: boolean
 }
@@ -29,7 +29,7 @@ export function Dropdown({
   required,
   hasError,
 }: Props) {
-  const [selected, setSelected] = useState<DropdownOption>()
+  const [selected, setSelected] = useState<DropdownOption<any>>()
 
   return (
     <Listbox

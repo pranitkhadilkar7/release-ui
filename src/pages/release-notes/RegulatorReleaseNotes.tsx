@@ -27,7 +27,7 @@ export function RegulatorReleaseNotes() {
             key={`${release.id}`}
             id={release.id}
             name={release.name}
-            descriptions={release.description}
+            descriptions={release.descriptions}
             month={release.month}
             year={release.year}
             newFeatures={release.newFeatures}

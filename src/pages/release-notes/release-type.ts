@@ -4,7 +4,7 @@ export type ReleaseStatus = 'PUBLISHED' | 'UNPUBLISHED'
 export type Release = {
   id: number
   name: string
-  description: string[]
+  descriptions: string[]
   type: ReleaseType
   month: string
   year: string

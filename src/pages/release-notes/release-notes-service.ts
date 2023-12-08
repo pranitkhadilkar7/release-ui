@@ -1,4 +1,5 @@
 import { apiService } from '../../store/service'
+import { getAccessTokenFromLocal } from '../../utils/storageUtils'
 import { LatestRelease, Release, ReleaseType } from './release-type'
 
 const releaseApi = apiService.injectEndpoints({
@@ -19,7 +20,24 @@ const releaseApi = apiService.injectEndpoints({
         method: 'GET',
       }),
     }),
+    createRelease: build.mutation<
+      any,
+      Omit<Release, 'id' | 'createdAt' | 'updatedAt'>
+    >({
+      query: (body) => ({
+        url: '/release/create',
+        method: 'POST',
+        body,
+        headers: {
+          Authorization: `Bearer ${getAccessTokenFromLocal()}`,
+        },
+      }),
+    }),
   }),
 })
 
-export const { useGetReleasesQuery, useGetLatestReleaseQuery } = releaseApi
+export const {
+  useGetReleasesQuery,
+  useGetLatestReleaseQuery,
+  useCreateReleaseMutation,
+} = releaseApi

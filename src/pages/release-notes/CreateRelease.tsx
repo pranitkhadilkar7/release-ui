@@ -10,12 +10,14 @@ import {
 } from '../../utils/constant'
 import { PrimaryButton } from '../../components/PrimaryButton'
 import { TextareaInput } from '../../components/TextareaInput'
+import { useCreateReleaseMutation } from './release-notes-service'
+import { ReleaseType } from './release-type'
 
 type RelaseForm = {
   name: string
   month: string
   year: string
-  type: string
+  type: ReleaseType
   descriptions: { description: string }[]
   newFeatures: { feature: string }[]
   upgrades: { upgrade: string }[]
@@ -34,14 +36,13 @@ export function CreateRelease() {
       name: '',
       month: '',
       year: '',
-      type: '',
+      type: '' as ReleaseType,
       descriptions: [{ description: '' }],
       newFeatures: [{ feature: '' }],
       upgrades: [{ upgrade: '' }],
       fixes: [{ fix: '' }],
     },
   })
-
   const {
     fields: descriptionFields,
     append: appendDescription,
@@ -72,8 +73,17 @@ export function CreateRelease() {
     remove: removeFix,
   } = useFieldArray({ control, name: 'fixes' })
 
+  const [createRelease] = useCreateReleaseMutation()
+
   function onSubmit(data: RelaseForm) {
-    console.log(data)
+    createRelease({
+      ...data,
+      descriptions: [],
+      newFeatures: [],
+      upgrades: [],
+      fixes: [],
+      status: 'PUBLISHED',
+    })
   }
 
   return (
@@ -148,7 +158,7 @@ export function CreateRelease() {
             <Controller
               control={control}
               name="type"
-              defaultValue=""
+              defaultValue={'' as ReleaseType}
               rules={{ required: true }}
               render={({ field: { onChange, value } }) => (
                 <Dropdown
