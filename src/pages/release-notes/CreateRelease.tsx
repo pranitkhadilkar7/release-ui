@@ -12,6 +12,8 @@ import { PrimaryButton } from '../../components/PrimaryButton'
 import { TextareaInput } from '../../components/TextareaInput'
 import { useCreateReleaseMutation } from './release-notes-service'
 import { ReleaseType } from './release-type'
+import { useNavigate } from 'react-router-dom'
+import { PATH } from '../../routes/routeConfig'
 
 type RelaseForm = {
   name: string
@@ -25,6 +27,7 @@ type RelaseForm = {
 }
 
 export function CreateRelease() {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -73,16 +76,26 @@ export function CreateRelease() {
     remove: removeFix,
   } = useFieldArray({ control, name: 'fixes' })
 
-  const [createRelease] = useCreateReleaseMutation()
+  const [createRelease, { isLoading }] = useCreateReleaseMutation()
 
   function onSubmit(data: RelaseForm) {
     createRelease({
       ...data,
-      descriptions: [],
-      newFeatures: [],
-      upgrades: [],
-      fixes: [],
+      descriptions: data.descriptions
+        .filter(({ description }) => !!description)
+        .map(({ description }) => description),
+      newFeatures: data.newFeatures
+        .filter(({ feature }) => !!feature)
+        .map(({ feature }) => feature),
+      upgrades: data.upgrades
+        .filter(({ upgrade }) => !!upgrade)
+        .map(({ upgrade }) => upgrade),
+      fixes: data.fixes.filter(({ fix }) => !!fix).map(({ fix }) => fix),
       status: 'PUBLISHED',
+    }).then((res: any) => {
+      if (res.data) {
+        navigate(PATH.home)
+      }
     })
   }
 
@@ -268,6 +281,8 @@ export function CreateRelease() {
             title="Submit"
             className="tw-h-10 tw-w-full tw-mt-5"
             onClick={handleSubmit(onSubmit)}
+            disabled={isLoading}
+            showSpinner={isLoading}
           />
         </div>
       </div>

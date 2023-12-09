@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 type Props = {
   className?: string
 }
@@ -5,7 +7,10 @@ type Props = {
 export function ListMarker({ className }: Props) {
   return (
     <div
-      className={`tw-rounded-full tw-bg-primary tw-h-2 tw-w-2 tw-mx-3 ${className}`}
+      className={twMerge(
+        'tw-rounded-full tw-h-2 tw-w-2 tw-mx-3',
+        className ?? 'tw-bg-primary'
+      )}
     />
   )
 }

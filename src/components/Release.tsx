@@ -67,7 +67,7 @@ export function Release({
           />
           {upgrades.map((feature, index) => (
             <ListItem
-              key={`${id}-${index}-new-feature`}
+              key={`${id}-${index}-new-upgrades`}
               text={feature}
               listMarkerClassName="tw-bg-secondary"
             />
@@ -77,9 +77,16 @@ export function Release({
 
       {!!fixes.length && (
         <div className="tw-mb-4">
-          <Badge text="Fixes" className="tw-mb-3" />
+          <Badge
+            text="Fixes"
+            className="tw-mb-3 tw-bg-primary tw-text-primary"
+          />
           {fixes.map((fix, index) => (
-            <ListItem key={`${id}-${index}fix`} text={fix} />
+            <ListItem
+              key={`${id}-${index}fix`}
+              text={fix}
+              listMarkerClassName="tw-bg-primary"
+            />
           ))}
         </div>
       )}
