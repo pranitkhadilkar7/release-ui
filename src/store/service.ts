@@ -40,4 +40,5 @@ export const apiService = createApi({
   // baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3004/' }),
   baseQuery: baseQueryWithToastImpl,
   endpoints: () => ({}),
+  tagTypes: ['RELEASE'],
 })

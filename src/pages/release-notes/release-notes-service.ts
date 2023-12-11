@@ -13,12 +13,22 @@ const releaseApi = apiService.injectEndpoints({
         method: 'GET',
         params: { ...params },
       }),
+      providesTags: (result, error, arg) =>
+        result
+          ? [
+              ...result?.data?.map(({ id }) => ({
+                type: 'RELEASE' as const,
+                id: `${id}`,
+              })),
+            ]
+          : ['RELEASE'],
     }),
     getLatestRelease: build.query<LatestRelease, void>({
       query: () => ({
         url: '/release/latest',
         method: 'GET',
       }),
+      providesTags: ['RELEASE'],
     }),
     createRelease: build.mutation<
       any,
@@ -32,6 +42,7 @@ const releaseApi = apiService.injectEndpoints({
           Authorization: `Bearer ${getAccessTokenFromLocal()}`,
         },
       }),
+      invalidatesTags: ['RELEASE'],
     }),
   }),
 })
