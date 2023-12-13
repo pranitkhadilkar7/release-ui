@@ -3,35 +3,29 @@ import emtechLogo from '../../assets/images/logo.png'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ErrorText } from '../../components/ErrorText'
 import isEmail from 'validator/lib/isEmail'
-import { useLoginMutation } from './login-service'
 import { useNavigate } from 'react-router-dom'
-import { storeAccessTokenAtLocal } from '../../utils/storageUtils'
 import { PATH } from '../../routes/routeConfig'
-import { useDispatch } from 'react-redux'
-import { login } from './login-slice'
+import { useSignupMutation } from './signup-service'
 
-export type SignInForm = {
+export type SignUpForm = {
   email: string
   password: string
 }
 
-export function Login() {
+export function Signup() {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInForm>({ mode: 'onChange' })
+  } = useForm<SignUpForm>({ mode: 'onChange' })
 
-  const [loginUser, { isLoading }] = useLoginMutation()
+  const [signup, { isLoading }] = useSignupMutation()
 
-  const onSubmit: SubmitHandler<SignInForm> = (data) => {
-    loginUser(data).then((res: any) => {
-      if (res?.data?.accessToken) {
-        storeAccessTokenAtLocal(res.data.accessToken)
-        dispatch(login())
-        navigate(PATH.home)
+  const onSubmit: SubmitHandler<SignUpForm> = (data) => {
+    signup(data).then((res: any) => {
+      if (res.data) {
+        navigate(PATH.login)
       }
     })
   }
@@ -46,7 +40,7 @@ export function Login() {
             className="tw-max-h-5 tw-mb-4"
           />
           <h3 className="tw-font-bold tw-text-[1.75rem] tw-leading-9 tw-mt-2 tw-text-[#1e252d] tw-mb-2">
-            Sign In to your account
+            Sign Up to your account
           </h3>
           <div className="tw-w-full">
             <label
@@ -102,23 +96,23 @@ export function Login() {
             </div>
           </div>
           <PrimaryButton
-            title="Sign In"
+            title="Sign Up"
             className="tw-h-10 tw-w-full tw-mt-2"
             disabled={isLoading}
             showSpinner={isLoading}
             onClick={handleSubmit(onSubmit)}
           />
           <p className="tw-mt-4 tw-text-sm tw-text-gray-500">
-            Not a member?{' '}
+            Already a member?{' '}
             <a
               href="/"
               className="tw-font-semibold tw-leading-6 tw-text-primary hover:tw-text-primary"
               onClick={(e) => {
                 e.preventDefault()
-                navigate(PATH.signup)
+                navigate(PATH.login)
               }}
             >
-              Register for free
+              Login
             </a>
           </p>
           <p className="tw-mt-1 tw-text-sm tw-text-gray-500">

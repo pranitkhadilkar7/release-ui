@@ -3,6 +3,7 @@ import { Login } from '../pages/login/Login'
 import { CreateRelease } from '../pages/release-notes/CreateRelease'
 import { FspReleaseNotes } from '../pages/release-notes/FspReleaseNotes'
 import { RegulatorReleaseNotes } from '../pages/release-notes/RegulatorReleaseNotes'
+import { Signup } from '../pages/signup/Signup'
 
 type RouteInfo = {
   path: string
@@ -37,6 +38,10 @@ export const AUTH_ROUTES: RouteInfo[] = [
   {
     path: PATH.login,
     component: Login,
+  },
+  {
+    path: PATH.signup,
+    component: Signup,
   },
 ]
 
