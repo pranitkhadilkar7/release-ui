@@ -51,7 +51,7 @@ export function Release({
           />
           {newFeatures.map((feature, index) => (
             <ListItem
-              key={`${id}-${index}-new-feature`}
+              key={`${id}-${index}fix`}
               text={feature}
               listMarkerClassName="tw-bg-emerald-600"
             />
