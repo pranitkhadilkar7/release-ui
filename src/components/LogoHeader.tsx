@@ -60,14 +60,14 @@ export function LogoHeader() {
                   Create New Release
                 </a>
               </Menu.Item>
-              <Menu.Item>
+              {/* <Menu.Item>
                 <a
                   href="/"
                   className="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700"
                 >
                   Edit Release
                 </a>
-              </Menu.Item>
+              </Menu.Item> */}
               <Menu.Item>
                 <a
                   href="/"
