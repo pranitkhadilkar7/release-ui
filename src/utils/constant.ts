@@ -25,3 +25,7 @@ export const RELEASE_OPTIONS: DropdownOption<ReleaseType>[] = [
   { id: 'FSP', name: 'Fintech' },
   { id: 'REGULATOR', name: 'Regulator' },
 ]
+
+export const API_HOST = process.env.REACT_APP_API_HOST
+export const API_PORT = process.env.REACT_APP_API_PORT
+export const API_PROTOCOL = process.env.REACT_APP_API_PROTOCOL

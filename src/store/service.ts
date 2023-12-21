@@ -10,8 +10,15 @@ import {
 import { toast } from 'react-toastify'
 import { logout } from '../pages/login/login-slice'
 import { clearLocalStorage } from '../utils/storageUtils'
+import { API_HOST, API_PORT, API_PROTOCOL } from '../utils/constant'
 
-const baseQuery = fetchBaseQuery({ baseUrl: 'http://localhost:3004/' })
+const baseUrl = API_PORT
+  ? `${API_PROTOCOL}://${API_HOST}:${API_PORT}/`
+  : `${API_PROTOCOL}://${API_HOST}/`
+
+console.log(baseUrl)
+
+const baseQuery = fetchBaseQuery({ baseUrl })
 
 const baseQueryWithToastImpl: BaseQueryFn<
   string | FetchArgs,
