@@ -11,12 +11,12 @@ type RouteInfo = {
 }
 
 export const PATH = {
-  home: '/',
-  login: '/login',
-  signup: '/signup',
-  fspReleaseNotes: '/release-notes/fsp',
-  regulatorReleaseNotes: '/release-notes/regulator',
-  createRelease: '/release-notes/create',
+  home: '/emtech-release-ui',
+  login: '/emtech-release-ui/login',
+  signup: '/emtech-release-ui/signup',
+  fspReleaseNotes: '/emtech-release-ui/release-notes/fsp',
+  regulatorReleaseNotes: '/emtech-release-ui/release-notes/regulator',
+  createRelease: '/emtech-release-ui/release-notes/create',
 }
 
 export const PUBLIC_ROUTES: RouteInfo[] = [

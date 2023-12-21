@@ -10,7 +10,9 @@ export function RequireAuth({ children }: Props) {
   const location = useLocation()
 
   if (!isLoggedIn) {
-    return <Navigate to="/" state={{ from: location }} replace />
+    return (
+      <Navigate to="/emtech-release-ui" state={{ from: location }} replace />
+    )
   }
   return children
 }
