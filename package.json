@@ -2,7 +2,7 @@
   "name": "emtech-release-ui",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://emtech-services.github.io/emtech-release-ui/",
+  "homepage": "https://release-notes.emtech.com",
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
