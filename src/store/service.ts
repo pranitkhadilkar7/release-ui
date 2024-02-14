@@ -16,8 +16,6 @@ const baseUrl = API_PORT
   ? `${API_PROTOCOL}://${API_HOST}:${API_PORT}/`
   : `${API_PROTOCOL}://${API_HOST}/`
 
-console.log(baseUrl)
-
 const baseQuery = fetchBaseQuery({ baseUrl })
 
 const baseQueryWithToastImpl: BaseQueryFn<
