@@ -1,12 +1,12 @@
 import { useAuth } from '../hooks/useAuth'
 
-export const withAuthentication = (WrappedComponent: () => JSX.Element) => {
-  return () => {
+export function withAuthentication(WrappedComponent: () => JSX.Element) {
+  return (props: any) => {
     const { isLoggedIn } = useAuth()
     return (
       <>
         {isLoggedIn ? (
-          <WrappedComponent />
+          <WrappedComponent {...props} />
         ) : (
           <div className="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-auto">
             <div className="tw-justify-center tw-items-centere">
