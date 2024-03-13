@@ -1,13 +1,20 @@
+import { LazyExoticComponent, lazy } from 'react'
 import { Home } from '../pages/home/Home'
-import { Login } from '../pages/login/Login'
 import { CreateRelease } from '../pages/release-notes/CreateRelease'
 import { FspReleaseNotes } from '../pages/release-notes/FspReleaseNotes'
 import { RegulatorReleaseNotes } from '../pages/release-notes/RegulatorReleaseNotes'
-import { Signup } from '../pages/signup/Signup'
+
+const Login = lazy(() => import('../pages/login/Login'))
+const Signup = lazy(() => import('../pages/signup/Signup'))
 
 type RouteInfo = {
   path: string
   component: () => JSX.Element
+}
+
+type LazyRouteInfo = {
+  path: string
+  component: LazyExoticComponent<() => JSX.Element>
 }
 
 export const PATH = {
@@ -34,7 +41,7 @@ export const PUBLIC_ROUTES: RouteInfo[] = [
   },
 ]
 
-export const AUTH_ROUTES: RouteInfo[] = [
+export const AUTH_ROUTES: LazyRouteInfo[] = [
   {
     path: PATH.login,
     component: Login,
