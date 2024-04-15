@@ -1,6 +1,6 @@
 import { ToastContainer } from 'react-toastify'
 import { PageRoutes } from './routes/PageRoutes'
-import 'react-toastify/dist/ReactToastify.css'
+// import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (

@@ -3,7 +3,8 @@ import { RootState } from '../../store/store'
 import { getAccessTokenFromLocal } from '../../utils/storageUtils'
 
 const initialState = {
-  isLoggedIn: !!getAccessTokenFromLocal(),
+  isLoggedIn:
+    typeof window !== 'undefined' ? !!getAccessTokenFromLocal() : false,
 }
 
 export const loginSlice = createSlice({
