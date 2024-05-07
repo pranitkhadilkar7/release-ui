@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { AUTH_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES } from './routeConfig'
 import { AuthNotRequired } from './AuthNotRequired'
 import { RequireAuth } from './RequireAuth'
+import { Suspense } from 'react'
 
 export function PageRoutes() {
   return (
@@ -18,9 +19,11 @@ export function PageRoutes() {
           key={route.path}
           path={route.path}
           element={
-            <AuthNotRequired>
-              <route.component />
-            </AuthNotRequired>
+            <Suspense>
+              <AuthNotRequired>
+                <route.component />
+              </AuthNotRequired>
+            </Suspense>
           }
         />
       ))}
