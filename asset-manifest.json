@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/release-ui/static/css/main.aa952534.css",
+    "main.js": "/release-ui/static/js/main.abb8b401.js",
+    "static/js/98.2f696387.chunk.js": "/release-ui/static/js/98.2f696387.chunk.js",
+    "static/js/970.92952ff8.chunk.js": "/release-ui/static/js/970.92952ff8.chunk.js",
+    "static/js/787.c12b9cd9.chunk.js": "/release-ui/static/js/787.c12b9cd9.chunk.js",
+    "static/media/back-swerl.png": "/release-ui/static/media/back-swerl.ca85a29a150e37b9c3fc.png",
+    "static/media/bg-dark-theme.png": "/release-ui/static/media/bg-dark-theme.5e95ccc59364dd5621d7.png",
+    "static/media/whitehouse.png": "/release-ui/static/media/whitehouse.6501b85d1cf8568fcdc1.png",
+    "static/media/rocket.png": "/release-ui/static/media/rocket.945c1f384dfc4fae5450.png",
+    "static/media/proximanova-bold-webfont.woff": "/release-ui/static/media/proximanova-bold-webfont.9fb03845004cbb370a13.woff",
+    "static/media/proximanova-regular-webfont.woff": "/release-ui/static/media/proximanova-regular-webfont.5a6a37c91028099251d6.woff",
+    "static/media/proximanova-extrabold-webfont.woff": "/release-ui/static/media/proximanova-extrabold-webfont.099f07fce6b6e8f134bc.woff",
+    "static/media/proximanova-bold-webfont.woff2": "/release-ui/static/media/proximanova-bold-webfont.a3b0276f97a720406345.woff2",
+    "static/media/proximanova-regular-webfont.woff2": "/release-ui/static/media/proximanova-regular-webfont.f491498983581ea194cf.woff2",
+    "static/media/proximanova-extrabold-webfont.woff2": "/release-ui/static/media/proximanova-extrabold-webfont.196e4c62a9e828a3d3cf.woff2",
+    "index.html": "/release-ui/index.html",
+    "main.aa952534.css.map": "/release-ui/static/css/main.aa952534.css.map",
+    "main.abb8b401.js.map": "/release-ui/static/js/main.abb8b401.js.map",
+    "98.2f696387.chunk.js.map": "/release-ui/static/js/98.2f696387.chunk.js.map",
+    "970.92952ff8.chunk.js.map": "/release-ui/static/js/970.92952ff8.chunk.js.map",
+    "787.c12b9cd9.chunk.js.map": "/release-ui/static/js/787.c12b9cd9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aa952534.css",
+    "static/js/main.abb8b401.js"
+  ]
+}
